@@ -1,0 +1,100 @@
+GIT COMMANDS USED IN THIS ASSIGNMENT
+====================================
+
+STEP 1 - LOCAL REPOSITORY SETUP
+-------------------------------
+git init
+    Initializes a new empty Git repository in the current folder,
+    creating the hidden .git directory that stores all version history.
+
+git add .
+    Stages all new and modified files in the current folder so they are
+    ready to be committed.
+
+git commit -m "Initial commit: add index.html and about.html"
+    Records the staged files as the first snapshot (commit) of the
+    project with a descriptive message.
+
+git branch -M main
+    Renames the default branch (master) to main, which is the standard
+    branch name used by GitHub.
+
+STEP 2 - GIT WORKFLOW (BRANCHING AND MERGING)
+---------------------------------------------
+git branch feature
+    Creates a new branch named feature (without switching to it).
+
+git switch feature
+    Switches the working directory from main to the feature branch so
+    new commits are recorded on feature.
+
+git add index.html
+    Stages the modified index.html file for the next commit.
+
+git commit -m "Add highlights section to home page (feature branch)"
+    Saves the staged change as a commit on the feature branch.
+
+git switch main
+    Switches back to the main branch.
+
+git merge feature
+    Merges the commits made on the feature branch into main. The first
+    merge was a fast-forward merge.
+
+git merge feature --no-ff -m "Merge feature branch into main"
+    Merges feature into main again while forcing a merge commit, so the
+    branch activity is clearly visible in the history graph.
+
+git log --oneline --graph --all --decorate
+    Displays the commit history as a compact graph showing all branches,
+    commits, merge points, and branch labels.
+
+STEP 3 - GITIGNORE IMPLEMENTATION
+---------------------------------
+(notepad .gitignore  / created the file with the editor)
+    Created a .gitignore file containing the rules "*.log" and "temp/"
+    so Git ignores log files and the temp folder.
+
+git status --short
+    Shows a short status of the working tree; used to confirm that
+    debug.log and temp/notes.txt were correctly ignored.
+
+git check-ignore debug.log temp\notes.txt
+    Verifies which files match the ignore rules in .gitignore.
+
+STEP 4 - UNDO OPERATION
+-----------------------
+git commit -m "Temporary commit: change footer text (will be undone)"
+    Created an extra commit so that the undo operation could be
+    demonstrated on it.
+
+git reset --hard HEAD~1
+    Moves HEAD and the main branch back one commit, deleting the last
+    commit and reverting the working tree to the previous state.
+
+git log --oneline -3
+    Confirms that the temporary commit no longer exists in history.
+
+git status
+    Confirmed the working tree is clean after the reset.
+
+git diff HEAD -- index.html
+    Confirmed index.html no longer differs from the last commit, i.e.
+    the undone footer change was removed from the files as well.
+
+STEP 5 - GITHUB INTEGRATION
+---------------------------
+git remote add origin https://github.com/<username>/<repo-name>.git
+    Connects the local repository to the empty public GitHub
+    repository as a remote named origin.
+
+git remote -v
+    Lists the configured remotes to verify the connection to GitHub.
+
+git push -u origin main
+    Uploads the complete main branch (all commits and merges) to
+    GitHub and sets upstream tracking for future pushes.
+
+git push origin feature
+    Uploads the feature branch to GitHub so the branch activity is
+    visible in the repository.
