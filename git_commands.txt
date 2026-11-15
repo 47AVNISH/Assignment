@@ -84,7 +84,7 @@ git diff HEAD -- index.html
 
 STEP 5 - GITHUB INTEGRATION
 ---------------------------
-git remote add origin https://github.com/<username>/<repo-name>.git
+git remote add origin https://github.com/47AVNISH/Assignment.git
     Connects the local repository to the empty public GitHub
     repository as a remote named origin.
 
@@ -98,3 +98,9 @@ git push -u origin main
 git push origin feature
     Uploads the feature branch to GitHub so the branch activity is
     visible in the repository.
+
+git ls-remote origin
+    Lists the branch references stored on GitHub to confirm that the
+    push succeeded and the remote history matches the local history.
+
+Repository URL: https://github.com/47AVNISH/Assignment
